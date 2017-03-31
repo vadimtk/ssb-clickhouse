@@ -17,3 +17,14 @@ CREATE TABLE lineorder (
         LO_COMMITDATE           Date,
         LO_SHIPMODE             String
 )Engine=MergeTree(LO_ORDERDATE,(LO_ORDERKEY,LO_LINENUMBER,LO_ORDERDATE),8192);
+
+CREATE TABLE customer ( C_CUSTKEY    UInt32,
+C_NAME	String,
+C_ADDRESS String,
+C_CITY String,
+C_NATION String,
+C_REGION String,
+C_PHONE String,
+C_MKTSEGMENT String,
+C_FAKEDATE Date
+)Engine=MergeTree(C_FAKEDATE,(C_CUSTKEY,C_FAKEDATE),8192)
