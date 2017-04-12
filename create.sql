@@ -28,7 +28,7 @@ CREATE TABLE customer (
         C_PHONE         String,
         C_MKTSEGMENT    String,
         C_FAKEDATE      Date
-)Engine=MergeTree(C_FAKEDATE,(C_CUSTKEY,C_FAKEDATE),8192)
+)Engine=MergeTree(C_FAKEDATE,(C_CUSTKEY,C_FAKEDATE),8192);
 
 CREATE TABLE part ( 
         P_PARTKEY       UInt32,
@@ -38,10 +38,10 @@ CREATE TABLE part (
         P_BRAND         String,
         P_COLOR         String,
         P_TYPE          String,
-        P_SIZE          Uint8,
+        P_SIZE          UInt8,
         P_CONTAINER     String,
         P_FAKEDATE      Date
-)Engine=MergeTree(P_FAKEDATE,(P_PARTKEY,P_FAKEDATE),8192)
+)Engine=MergeTree(P_FAKEDATE,(P_PARTKEY,P_FAKEDATE),8192);
 
 CREATE TABLE lineorderd AS lineorder ENGINE = Distributed(perftest_3shards_1replicas, default, lineorder, rand());
 CREATE TABLE customerd AS customer ENGINE = Distributed(perftest_3shards_1replicas, default, customer, rand());
