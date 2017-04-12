@@ -38,7 +38,7 @@ CREATE TABLE part (
         P_BRAND         String,
         P_COLOR         String,
         P_TYPE          String,
-        P_SIZE          Uint8,
+        P_SIZE          UInt8,
         P_CONTAINER     String,
         P_FAKEDATE      Date
 )Engine=MergeTree(P_FAKEDATE,(P_PARTKEY,P_FAKEDATE),8192);
