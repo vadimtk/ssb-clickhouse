@@ -43,6 +43,17 @@ CREATE TABLE part (
         P_FAKEDATE      Date
 )Engine=MergeTree(P_FAKEDATE,(P_PARTKEY,P_FAKEDATE),8192);
 
+CREATE TABLE supplier ( 
+        S_SUPPKEY    UInt32,
+        S_NAME	String,
+        S_ADDRESS String,
+        S_CITY String,
+        S_NATION String,
+        S_REGION String,
+        S_PHONE String,
+        S_FAKEDATE Date
+)Engine=MergeTree(S_FAKEDATE,(S_SUPPKEY,S_FAKEDATE),8192)
+
 CREATE TABLE lineorderd AS lineorder ENGINE = Distributed(perftest_3shards_1replicas, default, lineorder, rand());
 CREATE TABLE customerd AS customer ENGINE = Distributed(perftest_3shards_1replicas, default, customer, rand());
 CREATE TABLE partd AS part ENGINE = Distributed(perftest_3shards_1replicas, default, part, rand());
