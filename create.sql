@@ -16,7 +16,7 @@ CREATE TABLE lineorder (
         LO_TAX                  UInt8,
         LO_COMMITDATE           Date,
         LO_SHIPMODE             String
-)Engine=MergeTree(LO_ORDERDATE,(LO_ORDERKEY,LO_LINENUMBER,LO_ORDERDATE),8192);
+)Engine=MergeTree(LO_ORDERDATE,(LO_ORDERKEY,LO_LINENUMBER),8192);
 
 CREATE TABLE customer ( 
         C_CUSTKEY       UInt32,
@@ -28,7 +28,7 @@ CREATE TABLE customer (
         C_PHONE         String,
         C_MKTSEGMENT    String,
         C_FAKEDATE      Date
-)Engine=MergeTree(C_FAKEDATE,(C_CUSTKEY,C_FAKEDATE),8192);
+)Engine=MergeTree(C_FAKEDATE,(C_CUSTKEY),8192);
 
 CREATE TABLE part ( 
         P_PARTKEY       UInt32,
@@ -41,7 +41,7 @@ CREATE TABLE part (
         P_SIZE          UInt8,
         P_CONTAINER     String,
         P_FAKEDATE      Date
-)Engine=MergeTree(P_FAKEDATE,(P_PARTKEY,P_FAKEDATE),8192);
+)Engine=MergeTree(P_FAKEDATE,(P_PARTKEY),8192);
 
 CREATE TABLE supplier ( 
         S_SUPPKEY    UInt32,
@@ -52,7 +52,7 @@ CREATE TABLE supplier (
         S_REGION String,
         S_PHONE String,
         S_FAKEDATE Date
-)Engine=MergeTree(S_FAKEDATE,(S_SUPPKEY,S_FAKEDATE),8192)
+)Engine=MergeTree(S_FAKEDATE,(S_SUPPKEY),8192)
 
 CREATE TABLE lineorderd AS lineorder ENGINE = Distributed(perftest_3shards_1replicas, default, lineorder, rand());
 CREATE TABLE customerd AS customer ENGINE = Distributed(perftest_3shards_1replicas, default, customer, rand());
